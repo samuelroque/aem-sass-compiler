@@ -22,13 +22,6 @@
         </developer>
     </developers>
 
-    <scm>
-        <connection>scm:git:https://github.com/mickleroy/aem-sass-compiler.git</connection>
-        <developerConnection>scm:git:https://github.com/mickleroy/aem-sass-compiler.git</developerConnection>
-        <url>https://github.com/mickleroy/aem-sass-compiler</url>
-        <tag>HEAD</tag>
-    </scm>
-
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
@@ -37,21 +30,8 @@
         </license>
     </licenses>
 
-    <distributionManagement>
-        <snapshotRepository>
-            <id>sonatype-snapshot</id>
-            <name>Sonatype Snapshot</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>sonatype-release</id>
-            <name>Sonatype Release</name>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-        </repository>
-    </distributionManagement>
-
     <prerequisites>
-        <maven>3.0.2</maven>
+        <maven>3.6.3</maven>
     </prerequisites>
 
     <!-- ====================================================================== -->
@@ -169,7 +149,7 @@
         <dependency>
             <groupId>io.bit3</groupId>
             <artifactId>jsass</artifactId>
-            <version>5.7.3</version>
+            <version>5.10.4</version>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
@@ -229,6 +209,7 @@
                         <Bundle-SymbolicName>com.github.mickleroy.aem-sass-compiler</Bundle-SymbolicName>
                         <Bundle-ClassPath>.,{maven-dependencies}</Bundle-ClassPath>
                         <Embed-Dependency>*;scope=compile|runtime;inline=true</Embed-Dependency>
+                        <Embed-Transitive>true</Embed-Transitive>
                     </instructions>
                 </configuration>
             </plugin>
@@ -306,7 +287,7 @@
                     <plugin>
                         <groupId>org.apache.sling</groupId>
                         <artifactId>maven-sling-plugin</artifactId>
-                        <version>2.1.0</version>
+                        <version>2.2.0</version>
                         <executions>
                             <execution>
                                 <id>install-bundle</id>
@@ -319,29 +300,8 @@
                             <user>${crx.username}</user>
                             <password>${crx.password}</password>
                             <slingUrl>http://${crx.host}:${crx.port}/system/console/bundles</slingUrl>
-                            <slingUrlSuffix>/apps/aem-sass-compiler/install/</slingUrlSuffix>
+                            <slingUrlSuffix>/apps/vwgroup/install/</slingUrlSuffix>
                         </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>sign-artifacts</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.5</version>
-                        <executions>
-                            <execution>
-                                 <id>sign-artifacts</id>
-                                 <phase>verify</phase>
-                                 <goals>
-                                     <goal>sign</goal>
-                                 </goals>
-                            </execution>
-                        </executions>
                     </plugin>
                 </plugins>
             </build>
